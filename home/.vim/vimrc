@@ -1,0 +1,57 @@
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+execute pathogen#infect()
+
+" Make backspace behave in a sane manner.
+set backspace=indent,eol,start
+
+" Switch syntax highlighting on
+syntax on
+set background=dark
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+" Always show the status line
+set laststatus=2
+
+" Always show the cursor position
+set ruler
+
+" Tabs
+set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+
+" Enable the mouse
+set mouse=a
+
+" Line numbers
+set number
+
+colorscheme molokai
+
+""""""""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""""""""
+let g:airline_theme             = 'powerlineish'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+let g:airline_powerline_fonts   = 1
+" airline handles this
+set noshowmode
+
+"" vim-powerline symbols
+" let g:airline_left_sep          = '⮀'
+" let g:airline_left_alt_sep      = '⮁'
+" let g:airline_right_sep         = '⮂'
+" let g:airline_right_alt_sep     = '⮃'
+" let g:airline_branch_prefix     = '⭠'
+" let g:airline_readonly_symbol   = '⭤'
+" let g:airline_linecolumn_prefix = '⭡'
