@@ -35,6 +35,27 @@ set mouse=a
 " Line numbers
 set number
 
+" Don't let it touch the edge!
+set scrolloff=2
+
+" No swapfiles
+set noswapfile
+
+" Dedicated backup folder
+set backupdir=~/.vim/backup
+
+" Trying out a title
+set title
+
+" Indentation
+set autoindent
+set smartindent
+
+" Searching
+set ignorecase
+set smartcase
+
+" Pretty colors!
 colorscheme molokai
 
 """"""""""""""""""""""""""""""
