@@ -39,7 +39,7 @@ set number
 set scrolloff=2
 
 " No swapfiles
-set noswapfile
+"set noswapfile
 
 " Dedicated backup folder
 set backupdir=~/.vim/backup
