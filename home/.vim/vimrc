@@ -5,7 +5,7 @@ noremap <Right> <NOP>
 
 
 " Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+"N This must be first, because it changes other options as a side effect.
 set nocompatible
 
 execute pathogen#infect()
@@ -76,3 +76,24 @@ set noshowmode
 " let g:airline_branch_prefix     = '⭠'
 " let g:airline_readonly_symbol   = '⭤'
 " let g:airline_linecolumn_prefix = '⭡'
+
+"
+" Mostly from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+"
+" Much more convienient than \
+let mapleader = "\<Space>"
+
+" Faster save
+nnoremap <Leader>w :w<CR>
+
+" Copy and paste to system clipboard with leader
+nmap <Leader>y "*y
+nmap <Leader>d "*d
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "*p
+nmap <Leader>P "*P
+vmap <Leader>p "*p
+vmap <Leader>P "*P
+
+
