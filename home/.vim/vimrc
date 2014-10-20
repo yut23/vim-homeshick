@@ -87,6 +87,11 @@ let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 
+" Write, darn you!
+nnoremap <Leader>W :w!<CR>
+" Die!
+nnoremap <Leader>Q :q!<CR>
+
 " Copy and paste to system clipboard with leader
 vmap <Leader>y "*y
 vmap <Leader>d "*d
