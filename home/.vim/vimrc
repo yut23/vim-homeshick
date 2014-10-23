@@ -26,7 +26,7 @@ set laststatus=2
 set ruler
 
 " Tabs
-set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Enable the mouse
 set mouse=a
@@ -53,6 +53,13 @@ set smartindent
 " Searching
 set ignorecase
 set smartcase
+
+" Split in a sensible manner
+set splitbelow
+set splitright
+
+" More effective block editing
+set virtualedit=block
 
 " Pretty colors!
 colorscheme molokai
@@ -101,3 +108,8 @@ vmap <Leader>p "*p
 vmap <Leader>P "*P
 
 
+" Use mode-dependent cursor
+let &t_ti.=system('tput cbb')
+let &t_SI.=system('tput cbl')
+let &t_EI.=system('tput cbb')
+let &t_te.=system('tput crs')
