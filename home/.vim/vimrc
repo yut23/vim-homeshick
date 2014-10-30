@@ -113,3 +113,7 @@ let &t_ti.=system('tput cbb')
 let &t_SI.=system('tput cbl')
 let &t_EI.=system('tput cbb')
 let &t_te.=system('tput crs')
+
+" Standard shell-like path completion
+set wildmenu
+set wildmode=list:longest
