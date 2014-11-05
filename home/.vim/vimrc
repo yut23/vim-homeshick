@@ -65,9 +65,9 @@ set virtualedit=block
 colorscheme molokai
 set background=dark
 
-""""""""""""""""""""""""""""""
-" airline
-""""""""""""""""""""""""""""""
+"""""""""""
+" airline "
+"""""""""""
 let g:airline_theme             = 'powerlineish'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
@@ -117,3 +117,23 @@ let &t_te.=system('tput crs')
 " Standard shell-like path completion
 set wildmenu
 set wildmode=list:longest
+
+""""""""""""""
+" tmux fixes "
+""""""""""""""
+" Handle tmux $TERM issues in vim
+if $TERM =~ '^screen-256color'
+  map <Esc>OH <Home>
+  map! <Esc>OH <Home>
+  map <Esc>OF <End>
+  map! <Esc>OF <End>
+endif
+
+""""""""""""""""""
+" vim-windowswap "
+""""""""""""""""""
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+
