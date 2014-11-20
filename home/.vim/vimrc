@@ -1,92 +1,82 @@
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-execute pathogen#infect()
-
-" Make backspace behave in a sane manner.
+" Colors {{{
+colorscheme molokai     " very nice
+set background=dark
+syntax enable           " turn syntax highlighting on
+" }}}
+" Misc {{{
 set backspace=indent,eol,start
 
-" Switch syntax highlighting on
-syntax on
-
-" Enable file type detection and do language-dependent indenting.
-filetype plugin indent on
-
-" Always show the status line
-set laststatus=2
-
-" Always show the cursor position
-set ruler
-
-" Tabs
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-" Enable the mouse
-set mouse=a
-
-" Line numbers
-set number
-
-" Don't let it touch the edge!
-set scrolloff=2
-
-" No swapfiles
-"set noswapfile
-
-" Dedicated backup folder
-set backupdir=~/.vim/backup
-
-" Trying out a title
-set title
-
-" Indentation
-set autoindent
-set smartindent
-
-" Searching
-set ignorecase
-set smartcase
-
-" Split in a sensible manner
-set splitbelow
+set splitbelow          " split in a sensible manner
 set splitright
 
 " More effective block editing
 set virtualedit=block
 
-" Pretty colors!
-colorscheme molokai
-set background=dark
+" }}}
+" Spaces and Tabs {{{
+set tabstop=2           " number of visual spaces per tab
+set softtabstop=2       " number of spaces in tab when editing
+set shiftwidth=2        " number of spaces in tab when reindenting
+set expandtab           " tabs are spaces
 
-"""""""""""
-" airline "
-"""""""""""
-let g:airline_theme             = 'powerlineish'
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
-let g:airline_powerline_fonts   = 1
-" airline handles this
-set noshowmode
+filetype plugin on      " load filetype-specific plugins
+filetype indent on      " load filetype-specific indent files
 
-"" vim-powerline symbols
-" let g:airline_left_sep          = '⮀'
-" let g:airline_left_alt_sep      = '⮁'
-" let g:airline_right_sep         = '⮂'
-" let g:airline_right_alt_sep     = '⮃'
-" let g:airline_branch_prefix     = '⭠'
-" let g:airline_readonly_symbol   = '⭤'
-" let g:airline_linecolumn_prefix = '⭡'
+set autoindent          " automatic indentation is nice
+set smartindent         " smart is better
+" }}}
+" UI Config {{{
+set ruler               " always show the cursor position
+set number              " line numbers
+set title               " display a title
+set cursorline          " highlight current line
 
-"
-" Mostly from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-"
+set wildmenu            " standard shell-like path completion
+set wildmode=list:longest
+set lazyredraw          " redraw only when necessary (faster macros)
+
+set scrolloff=2         " don't let it touch the edge!
+set mouse=a             " enable the mouse
+
+" Use mode-dependent cursor
+let &t_ti.=system('tput cbb')
+let &t_SI.=system('tput cbl')
+let &t_EI.=system('tput cbb')
+let &t_te.=system('tput crs')
+" }}}
+" Searching {{{
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+set ignorecase          " We don't care about case...
+set smartcase           " ...or do we?
+" }}}
+" Folding {{{
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " fold based on indent level
+" }}}
+" Movement Shortcuts {{{
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" }}}
+" Leader Shortcuts {{{
+
 " Much more convienient than \
 let mapleader = "\<Space>"
 
@@ -107,33 +97,66 @@ nmap <Leader>P "*P
 vmap <Leader>p "*p
 vmap <Leader>P "*P
 
+" }}}
+" Airline {{{
+set laststatus=2        " always show the status line
+set noshowmode          " airline handles this
 
-" Use mode-dependent cursor
-let &t_ti.=system('tput cbb')
-let &t_SI.=system('tput cbl')
-let &t_EI.=system('tput cbb')
-let &t_te.=system('tput crs')
+let g:airline_theme             = 'powerlineish'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+let g:airline_powerline_fonts   = 1
+" }}}
+" Windowswap {{{
+" Prevent default bindings
+let g:windowswap_map_keys = 0
+nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
-" Standard shell-like path completion
-set wildmenu
-set wildmode=list:longest
+" }}}
+" Launch Config {{{
+execute pathogen#infect()
 
+" }}}
+" Tmux {{{
 """"""""""""""
 " tmux fixes "
 """"""""""""""
 " Handle tmux $TERM issues in vim
-if $TERM =~ '^screen-256color'
-  map <Esc>OH <Home>
-  map! <Esc>OH <Home>
-  map <Esc>OF <End>
-  map! <Esc>OF <End>
-endif
+"if $TERM =~ '^screen-256color'
+"  map <Esc>OH <Home>
+"  map! <Esc>OH <Home>
+"  map <Esc>OF <End>
+"  map! <Esc>OF <End>
+"endif
+" }}}
+" Backups {{{
 
-""""""""""""""""""
-" vim-windowswap "
-""""""""""""""""""
-let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
-nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
 
+" }}}
+
+
+"""""""""""
+" airline "
+"""""""""""
+
+"" vim-powerline symbols
+" let g:airline_left_sep          = '⮀'
+" let g:airline_left_alt_sep      = '⮁'
+" let g:airline_right_sep         = '⮂'
+" let g:airline_right_alt_sep     = '⮃'
+" let g:airline_branch_prefix     = '⭠'
+" let g:airline_readonly_symbol   = '⭤'
+" let g:airline_linecolumn_prefix = '⭡'
+
+"
+" Mostly from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+"
+
+" vim:foldmethod=marker:foldlevel=0
