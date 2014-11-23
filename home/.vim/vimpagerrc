@@ -1,4 +1,4 @@
-set noloadplugins
+runtime! ~/.vim
 
 let vimpager_passthrough = 1
 colorscheme molokai
