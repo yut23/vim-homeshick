@@ -22,6 +22,7 @@ Plugin 'StanAngeloff/php.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 
 Plugin 'ervandew/supertab'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'coot/CRDispatcher'
 Plugin 'coot/enchantedvim'
 call vundle#end()
