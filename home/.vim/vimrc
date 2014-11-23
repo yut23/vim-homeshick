@@ -2,6 +2,31 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Init Vundle {{{
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+" }}}
+" Plugins {{{
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
+
+Plugin 'scrooloose/syntastic'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'rking/ag.vim'
+Plugin 'StanAngeloff/php.vim'
+Plugin '2072/PHP-Indenting-for-VIm'
+
+Plugin 'ervandew/supertab'
+Plugin 'coot/CRDispatcher'
+Plugin 'coot/enchantedvim'
+call vundle#end()
+filetype plugin indent on
+" }}}
 " Colors {{{
 colorscheme molokai     " very nice
 set background=dark
@@ -23,8 +48,8 @@ set softtabstop=2       " number of spaces in tab when editing
 set shiftwidth=2        " number of spaces in tab when reindenting
 set expandtab           " tabs are spaces
 
-filetype plugin on      " load filetype-specific plugins
-filetype indent on      " load filetype-specific indent files
+"filetype plugin on      " load filetype-specific plugins
+"filetype indent on      " load filetype-specific indent files
 
 set autoindent          " automatic indentation is nice
 set smartindent         " smart is better
@@ -113,10 +138,6 @@ let g:windowswap_map_keys = 0
 nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
 nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
 nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
-
-" }}}
-" Launch Config {{{
-execute pathogen#infect()
 
 " }}}
 " Tmux {{{
