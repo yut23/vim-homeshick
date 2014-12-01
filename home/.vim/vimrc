@@ -67,6 +67,7 @@ set lazyredraw          " redraw only when necessary (faster macros)
 
 set scrolloff=2         " don't let it touch the edge!
 set mouse=a             " enable the mouse
+set ttymouse=xterm2     " much faster mouse
 
 " Use mode-dependent cursor
 let &t_ti.=system('tput cbb')
