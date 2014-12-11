@@ -15,7 +15,7 @@ Plugin 'bling/vim-airline'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 
 Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
@@ -70,10 +70,25 @@ set mouse=a             " enable the mouse
 set ttymouse=xterm2     " much faster mouse
 
 " Use mode-dependent cursor
-let &t_ti.=system('tput cbb')
-let &t_SI.=system('tput cbl')
-let &t_EI.=system('tput cbb')
-let &t_te.=system('tput crs')
+let termemulator=$TEMU
+
+if termemulator == 'xterm' || termemulator == 'mintty'
+  let &t_ti.="\e[1 q"
+  let &t_SI.="\e[5 q"
+  let &t_EI.="\e[1 q"
+  let &t_te.="\e[0 q"
+elseif termemulator == 'konsole'
+  let &t_ti.="\e]50;CursorShape=0\007"
+  let &t_SI.="\e]50;CursorShape=1\007"
+  let &t_EI.="\e]50;CursorShape=0\007"
+  let &t_te.="\e]50;CursorShape=0\007"
+endif
+
+
+"let &t_ti.=system('tput cbb')
+"let &t_SI.=system('tput cbl')
+"let &t_EI.=system('tput cbb')
+"let &t_te.=system('tput crs')
 " }}}
 " Searching {{{
 set incsearch           " search as characters are entered
