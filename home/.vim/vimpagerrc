@@ -5,3 +5,5 @@ let vimpager_passthrough = 1
 colorscheme molokai
 set background=dark
 set mouse=a
+set ignorecase
+set smartcase
