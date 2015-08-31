@@ -26,6 +26,8 @@ Plugin 'ervandew/supertab'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'coot/CRDispatcher'
 Plugin 'coot/enchantedvim'
+
+Plugin 'Shougo/javacomplete'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -132,6 +134,9 @@ nnoremap <Leader>W :w!<CR>
 " Die!
 nnoremap <Leader>Q :q!<CR>
 
+" za is so awkward
+nnoremap <Leader>z za
+
 " Copy and paste to system clipboard with leader
 vmap <Leader>y "*y
 vmap <Leader>d "*d
@@ -179,7 +184,6 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 " }}}
-
 
 """""""""""
 " airline "
