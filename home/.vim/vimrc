@@ -21,6 +21,8 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'chrisbra/csv.vim'
 
 Plugin 'ervandew/supertab'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -44,6 +46,9 @@ set splitright
 
 " More effective block editing
 set virtualedit=block
+
+" Mark columns 80 and 90, and past 120
+let &colorcolumn="80,90,".join(range(120,999),",")
 
 " }}}
 " Spaces and Tabs {{{
