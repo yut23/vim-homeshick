@@ -48,7 +48,7 @@ set splitright
 set virtualedit=block
 
 " Mark columns 80 and 90, and past 120
-let &colorcolumn="80,90,".join(range(120,999),",")
+let &colorcolumn="80,90,120"
 
 " }}}
 " Spaces and Tabs {{{
@@ -80,7 +80,7 @@ set ttymouse=xterm2     " much faster mouse
 " Use mode-dependent cursor
 let termemulator=$TEMU
 
-if termemulator == 'xterm' || termemulator == 'mintty'
+if termemulator == 'xterm' || termemulator == 'mintty' || termemulator == 'gnome-terminal'
   let &t_ti.="\e[1 q"
   let &t_SI.="\e[5 q"
   let &t_EI.="\e[1 q"
