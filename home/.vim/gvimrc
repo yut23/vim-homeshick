@@ -1,0 +1,4 @@
+set guifont=Source\ Code\ Pro\ 9
+set guioptions-=r
+set guioptions-=L
+set guioptions-=T
