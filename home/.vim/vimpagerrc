@@ -7,3 +7,4 @@ set background=dark
 set mouse=a
 set ignorecase
 set smartcase
+set t_ut=
