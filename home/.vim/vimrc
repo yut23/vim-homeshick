@@ -16,27 +16,33 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 " utilities
 Plugin 'wesQ3/vim-windowswap'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
 
 " languages
-Plugin 'rking/ag.vim'
-Plugin 'StanAngeloff/php.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'tmux-plugins/vim-tmux'
 Plugin 'chrisbra/csv.vim'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-lua-ftplugin'
+Plugin 'harenome/vim-mipssyntax'
 Plugin 'raymond-w-ko/vim-lua-indent' " fix indentation
+Plugin 'rking/ag.vim'
+Plugin 'samsaga2/vim-z80'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'xolox/vim-lua-ftplugin'
+Plugin 'xolox/vim-misc'
 
 " completion
 Plugin 'Shougo/javacomplete'
-Plugin 'Valloric/YouCompleteMe'
+" I am now using the AUR package for this; it's a pain to update otherwise,
+" and I only really need it on my main computer
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
 
 " other
@@ -52,6 +58,7 @@ filetype plugin indent on
 colorscheme molokai     " very nice
 set background=dark
 syntax enable           " turn syntax highlighting on
+set t_ut=               " fix background color erase on terminal
 " }}}
 " Misc {{{
 set backspace=indent,eol,start
@@ -67,6 +74,14 @@ let &colorcolumn="80,90,120"
 
 " Decrease delay on escape
 set ttimeoutlen=50
+
+" Properly display man pages (in gvim)
+" from https://www.guyrutenberg.com/2014/01/03/view-man-pages-properly-in-gvim/
+" ==========================
+runtime ftplugin/man.vim
+if has("gui_running")
+	nnoremap K :<C-U>exe "Man" v:count "<C-R><C-W>"<CR>
+endif
 
 " }}}
 " Spaces and Tabs {{{
@@ -171,6 +186,11 @@ let g:airline_theme             = 'powerlineish'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_powerline_fonts   = 1
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 " }}}
 " Windowswap {{{
 " Prevent default bindings
@@ -202,7 +222,7 @@ set writebackup
 
 " }}}
 " YouCompleteMe {{{
-let g:ycm_extra_conf_globlist = ['/mnt/sdcard/school/data_structures/*','~/projects/advent-of-code/*','!~/*']
+let g:ycm_extra_conf_globlist = ['/mnt/sdcard/school/data_structures/*','~/projects/advent-of-code/*','/mnt/sdcard/school/comp_org/*','!~/*']
 " }}}
 
 """""""""""
