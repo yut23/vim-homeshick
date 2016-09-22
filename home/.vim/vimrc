@@ -28,6 +28,7 @@ Plugin 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
 " languages
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'chrisbra/csv.vim'
+Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'harenome/vim-mipssyntax'
 Plugin 'raymond-w-ko/vim-lua-indent' " fix indentation
 Plugin 'rking/ag.vim'
