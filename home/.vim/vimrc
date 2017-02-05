@@ -20,7 +20,7 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 " utilities
 Plugin 'wesQ3/vim-windowswap'
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
@@ -29,6 +29,7 @@ Plugin 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'chrisbra/csv.vim'
 Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'fs111/pydoc.vim'
 Plugin 'harenome/vim-mipssyntax'
 Plugin 'raymond-w-ko/vim-lua-indent' " fix indentation
 Plugin 'rking/ag.vim'
@@ -36,6 +37,7 @@ Plugin 'samsaga2/vim-z80'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'tomvanderlee/vim-kerboscript'
 Plugin 'xolox/vim-lua-ftplugin'
 Plugin 'xolox/vim-misc'
 
@@ -81,7 +83,7 @@ set ttimeoutlen=50
 " ==========================
 runtime ftplugin/man.vim
 if has("gui_running")
-	nnoremap K :<C-U>exe "Man" v:count "<C-R><C-W>"<CR>
+  nnoremap K :<C-U>exe "Man" v:count "<C-R><C-W>"<CR>
 endif
 
 " }}}
@@ -223,8 +225,19 @@ set writebackup
 
 " }}}
 " YouCompleteMe {{{
-let g:ycm_extra_conf_globlist = ['/mnt/sdcard/school/data_structures/*','~/projects/advent-of-code/*','/mnt/sdcard/school/comp_org/*','!~/*']
+let g:ycm_extra_conf_globlist = ['/mnt/sdcard/school/data_structures/*','~/projects/advent-of-code/*','~/school/comp_org/*','!~/*']
+"let g:ycm_server_keep_logfiles = 0
 " }}}
+" NERD Commenter {{{
+let g:NERDCustomDelimiters = { 'kerboscript': { 'left': '//' } }
+" }}}
+
+" vim-pydoc
+let g:pydoc_highlight=0
+let g:pydoc_window_lines=0.5
+
+" better-whitespace
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help', 'man', 'pydoc']
 
 """""""""""
 " airline "
