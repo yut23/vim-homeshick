@@ -93,11 +93,7 @@ set softtabstop=2       " number of spaces in tab when editing
 set shiftwidth=2        " number of spaces in tab when reindenting
 set expandtab           " tabs are spaces
 
-"filetype plugin on      " load filetype-specific plugins
-"filetype indent on      " load filetype-specific indent files
-
 set autoindent          " automatic indentation is nice
-set smartindent         " smart is better
 " }}}
 " UI Config {{{
 set ruler               " always show the cursor position
@@ -173,12 +169,15 @@ nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>z za
 
 " Copy and paste to system clipboard with leader
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p "+p
+vnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>P "+P
+
+nnoremap <silent> <Leader>h :let @/ = ""<CR>
+
 
 " }}}
 " Airline {{{
