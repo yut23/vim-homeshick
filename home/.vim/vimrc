@@ -3,59 +3,59 @@
 set nocompatible
 set shell=/bin/bash
 
-" Init Vundle {{{
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-" }}}
-" Plugins {{{
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+" Plugins (using vim-plug) {{{
+" automatically install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
+call plug#begin('~/.vim/plugged')
 " ui
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/syntastic'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " utilities
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
+Plug 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'wesQ3/vim-windowswap'
 
 " languages
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'chrisbra/csv.vim'
-Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'fs111/pydoc.vim'
-Plugin 'harenome/vim-mipssyntax'
-Plugin 'raymond-w-ko/vim-lua-indent' " fix indentation
-Plugin 'rking/ag.vim'
-Plugin 'samsaga2/vim-z80'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'tmux-plugins/vim-tmux'
-Plugin 'tomvanderlee/vim-kerboscript'
-Plugin 'xolox/vim-lua-ftplugin'
-Plugin 'xolox/vim-misc'
+Plug 'chrisbra/csv.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'tomvanderlee/vim-kerboscript'
+Plug 'harenome/vim-mipssyntax'
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'fs111/pydoc.vim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'seanpianka/vim-z80'
+
+Plug 'raymond-w-ko/vim-lua-indent' " fix indentation
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-lua-ftplugin'
+
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'StanAngeloff/php.vim'
 
 " completion
-Plugin 'Shougo/javacomplete'
+Plug 'ervandew/supertab'
+Plug 'Shougo/javacomplete'
 " I am now using the AUR package for this; it's a pain to update otherwise,
 " and I only really need it on my main computer
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'rdnetto/YCM-Generator'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'rdnetto/YCM-Generator'
 
 " other
-Plugin 'ervandew/supertab'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'coot/CRDispatcher'
-Plugin 'coot/enchantedvim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'coot/CRDispatcher' | Plug 'coot/enchantedvim'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 " }}}
 " Colors {{{
 colorscheme molokai     " very nice
