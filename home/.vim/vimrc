@@ -24,11 +24,14 @@ Plug 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'wesQ3/vim-windowswap'
 
 " languages
 Plug 'chrisbra/csv.vim'
+Plug 'mlr-msft/vim-loves-dafny', {'for': 'dafny'}
 Plug 'tikhomirov/vim-glsl'
 Plug 'tomvanderlee/vim-kerboscript'
 Plug 'harenome/vim-mipssyntax'
@@ -37,27 +40,50 @@ Plug 'fs111/pydoc.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'seanpianka/vim-z80'
 
-Plug 'raymond-w-ko/vim-lua-indent' " fix indentation
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-lua-ftplugin'
+Plug 'sheerun/vim-polyglot'
 
+" Haskell
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'haskell.vim'
+Plug 'cabal.vim'
+
+" Lua
+Plug 'raymond-w-ko/vim-lua-indent' " fix indentation
+Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-lua-ftplugin'
+
+" PHP
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'StanAngeloff/php.vim'
 
 " completion
 Plug 'ervandew/supertab'
 Plug 'Shougo/javacomplete'
-" I am now using the AUR package for this; it's a pain to update otherwise,
-" and I only really need it on my main computer
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'rdnetto/YCM-Generator'
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+  endif
+endfunction
+if hostname() == 'mandelbrot' " only install YCM on mandelbrot
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+endif
 
 " other
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'coot/CRDispatcher' | Plug 'coot/enchantedvim'
+Plug 'coot/CRDispatcher'
+  Plug 'coot/enchantedvim'
 
 call plug#end()
 " }}}
 " Colors {{{
+"set termguicolors
 colorscheme molokai     " very nice
 set background=dark
 syntax enable           " turn syntax highlighting on
@@ -178,6 +204,8 @@ vnoremap <Leader>P "+P
 
 nnoremap <silent> <Leader>h :let @/ = ""<CR>
 
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>u :GundoToggle<CR>
 
 " }}}
 " Airline {{{
@@ -226,9 +254,18 @@ set writebackup
 " YouCompleteMe {{{
 let g:ycm_extra_conf_globlist = ['/mnt/sdcard/school/data_structures/*','~/projects/advent-of-code/*','~/school/comp_org/*','!~/*']
 "let g:ycm_server_keep_logfiles = 0
+let g:ycm_semantic_triggers = {'haskell' : ['.']}   " for neco-ghc
 " }}}
 " NERD Commenter {{{
 let g:NERDCustomDelimiters = { 'kerboscript': { 'left': '//' } }
+" }}}
+" Syntastic {{{
+" Tell Syntastic to:
+" - check files on save.
+" - but only check Dafny files when requested.
+let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "passive_filetypes": ["dafny"] }
 " }}}
 
 " vim-pydoc
@@ -238,18 +275,16 @@ let g:pydoc_window_lines=0.5
 " better-whitespace
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help', 'man', 'pydoc']
 
-"""""""""""
-" airline "
-"""""""""""
+" Haskell {{{
+" ghcmod
+let $PATH = $PATH . ':' . expand('~/.local/bin')
 
-"" vim-powerline symbols
-" let g:airline_left_sep          = '⮀'
-" let g:airline_left_alt_sep      = '⮁'
-" let g:airline_right_sep         = '⮂'
-" let g:airline_right_alt_sep     = '⮃'
-" let g:airline_branch_prefix     = '⭠'
-" let g:airline_readonly_symbol   = '⭤'
-" let g:airline_linecolumn_prefix = '⭡'
+" necoghc
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+let g:syntastic_check_on_wq = 0
+" }}}
 
 "
 " Mostly from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/

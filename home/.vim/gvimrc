@@ -1,4 +1,6 @@
 set guifont=Source\ Code\ Pro\ 9
-set guioptions-=r
-set guioptions-=L
-set guioptions-=T
+set guioptions-=r " no right scrollbar
+set guioptions-=L " no left scrollbar
+set guioptions-=T " no toolbar
+set guioptions+=c " use console dialogs instead of popups
+set guioptions-=m " no menubar

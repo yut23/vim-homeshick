@@ -1,10 +1,13 @@
-"set noloadplugins
-runtime! ~/.vim
+set noloadplugins
+set rtp^=~/.local/share/nvim/plugged/molokai/
 
 let vimpager_passthrough = 1
+set notermguicolors
 colorscheme molokai
 set background=dark
 set mouse=a
 set ignorecase
 set smartcase
 set t_ut=
+
+" vim:ft=vim
