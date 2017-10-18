@@ -8,6 +8,7 @@ set background=dark
 set mouse=a
 set ignorecase
 set smartcase
+set wrapscan
 set t_ut=
 
 " vim:ft=vim

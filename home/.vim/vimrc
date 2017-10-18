@@ -46,8 +46,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
-Plug 'haskell.vim'
-Plug 'cabal.vim'
+Plug 'vim-scripts/haskell.vim'
+Plug 'vim-scripts/cabal.vim'
 
 " Lua
 Plug 'raymond-w-ko/vim-lua-indent' " fix indentation
