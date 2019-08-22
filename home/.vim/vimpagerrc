@@ -3,7 +3,15 @@ set runtimepath^=~/.local/share/nvim/plugged/molokai/
 
 let vimpager_passthrough = 1
 set notermguicolors
-colorscheme molokai
+if $TERM ==# 'linux'
+  " better theme for 8-color console
+  colorscheme delek
+  set guicursor=
+else
+  colorscheme molokai
+  " change cursor shape in insert mode
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
 set background=dark
 set mouse=a
 set ignorecase
