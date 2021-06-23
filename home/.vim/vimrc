@@ -3,6 +3,11 @@
 set nocompatible
 set shell=/bin/bash
 
+if filereadable($HOME . '/.config/nvim/init.vim')
+  source ~/.config/nvim/init.vim
+  finish
+endif
+
 " Plugins (using vim-plug) {{{
 " automatically install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
