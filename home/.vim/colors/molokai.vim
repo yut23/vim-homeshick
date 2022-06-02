@@ -7,6 +7,10 @@
 " by Wimer Hazenberg and its darker variant
 " by Hamish Stuart Macpherson
 "
+if filereadable($HOME . '/.config/nvim/colors/molokai.vim')
+    source ~/.config/nvim/colors/molokai.vim
+    finish
+endif
 
 hi clear
 
