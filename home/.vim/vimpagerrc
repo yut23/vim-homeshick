@@ -19,6 +19,4 @@ set smartcase
 set wrapscan
 set t_ut=
 
-autocmd VimEnter * nunmap <buffer> z
-
 " vim:ft=vim
