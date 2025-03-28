@@ -4,6 +4,13 @@ set nocompatible
 set shell=/bin/bash
 
 if filereadable($HOME . '/.config/nvim/init.vim')
+  " add ~/.config/nvim{,/after} after ~/.vim{,/after} in runtimepath
+  " escaping from https://stackoverflow.com/a/11311701
+  let &runtimepath = substitute(
+        \ &runtimepath,
+        \ '\v%(^|,)\V' . escape(expand('~/.vim'), '\') . '\v(/after)?\zs\ze%(,|$)',
+        \ ',' . expand('~/.config/nvim') . '\1',
+        \ 'g')
   source ~/.config/nvim/init.vim
   finish
 endif
